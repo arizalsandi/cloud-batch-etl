@@ -20,7 +20,7 @@ Perform batch ETL using cloud composer by Google Cloud.
 2. Create service account for your own access to GCP environment
 3. Create a new bucket in Google Cloud Storage, so you can put your dependencies resources 
 4. Go to Big Data > Composer,  to create new Composer Environtment.
-  - Name : {Depends on yours, here i used blankspace-cloud-composer as my composers name}
+  - Name : {Depends on yours, here i used blankspace-cloud-composer as my composer name}
   - Location: us-central1
   - Node count: 3
   - Zone: us-central1a
@@ -28,7 +28,7 @@ Perform batch ETL using cloud composer by Google Cloud.
   - Disk size (GB): 20 GB
   - Image Version: composer-1.17.0-preview.1-airflow-2.0.1
   - Python Version: 3
- 5. Go to Airflow UI through Composer were you created, choose **Admin** **>** **Variables** to import your `variable.json` which containing value and key like in this repo `data/variables.json`. Done forget to use your 
+ 5. Go to Airflow UI through Composer were you created, choose **Admin** **>** **Variables** to import your `variable.json` which containing value and key like in this repo `data/variables.json`. Dont forget to use your setting
 6. Create table in Big Query same as on what your task need
 7. To Run your DAG, just put your file in `dags/`, then your DAG will appear if there's no issue with your code
 
