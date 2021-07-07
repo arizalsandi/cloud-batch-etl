@@ -13,12 +13,7 @@ default_args = {
 
 PROJECT_ID = Variable.get('PROJECT_ID')
 EVENT_TABLE = Variable.get('EVENT_TABLE')
-SOURCE_PROJECT_ID = Variable.get('SOURCE_PROJECT_ID')
-SOURCE_CREDENTIAL = Variable.get('SOURCE_CREDENTIAL')
 
-credentials = service_account.Credentials.from_service_account.fila(SOURCE_CREDENTIAL)
-client = bigquery.Client
-(credentials = credentials, project=SOURCE_PROJECT_ID)
 
 with models.DAG(
     'bs-week2-event_table',
@@ -63,7 +58,7 @@ with models.DAG(
             created_at,
             event_id
             ''',
-            write_disposition='WRITE APPEND',
+            write_disposition='WRITE TRUNCAT',
             create_disposition='CREATE_IF_NEEDED',
             destination_dataset_table = EVENT_TABLE,
             location='US',
