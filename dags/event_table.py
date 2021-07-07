@@ -4,6 +4,8 @@ from airflow.utils.dates import days_ago
 from airflow.providers.google.cloud.operators.bigquery import BigQueryExecuteQueryOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.models import Variable
+from google.cloud import bigquery
+from google.oauth2 import service_account
 
 default_args = {
     'owner' : 'sandi',
@@ -11,6 +13,12 @@ default_args = {
 
 PROJECT_ID = Variable.get('PROJECT_ID')
 EVENT_TABLE = Variable.get('EVENT_TABLE')
+SOURCE_PROJECT_ID = Variable.get('SOURCE_PROJECT_ID')
+SOURCE_CREDENTIAL = Variable.get('SOURCE_CREDENTIAL')
+
+credentials = service_account.Credentials.from_service_account.fila(SOURCE_CREDENTIAL)
+client = bigquery.Client
+(credentials = credentials, project=SOURCE_PROJECT_ID)
 
 with models.DAG(
     'bs-week2-event_table',
